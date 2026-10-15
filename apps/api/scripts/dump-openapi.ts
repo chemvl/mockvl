@@ -1,7 +1,7 @@
-// Writes apps/ui/openapi.json — the input of the UI's hey-api codegen
-// (`bun run openapi:dump`). Offline and deterministic: the test env defaults
-// make env.ts parse without a .env, and the DB/Redis clients are lazy, so no
-// connection is ever opened. Run it after any route or schema change.
+// Writes apps/ui/openapi.json — the input of both the UI's and the admin's
+// hey-api codegen (`bun run openapi:dump`). Offline and deterministic: the test
+// env defaults make env.ts parse without a .env, and the DB/Redis clients are
+// lazy, so no connection is ever opened. Run it after any route or schema change.
 // The setup import must stay first: ES modules evaluate in declaration order,
 // so it fills process.env before env.ts parses it.
 import "../tests/setup";

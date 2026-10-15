@@ -30,19 +30,14 @@ describe('useAdminResourceMenu', () => {
     expect(result.current).toEqual([]);
   });
 
-  test('builds one Resources group with a child per resource', () => {
+  test('lists each resource as a top-level entry', () => {
     useAdminStore.getState().setBoot({ identity: null, resources: [posts] });
 
     const { result } = renderHook(() => useAdminResourceMenu());
 
-    expect(result.current).toHaveLength(1);
-    const group = result.current[0];
-    expect(group.path).toBe('/resources');
-    expect(group.name).toBe('Resources');
-    expect(group.icon).toBeDefined();
-    expect(group.routes).toEqual([
+    expect(result.current).toEqual([
       expect.objectContaining({ path: '/resources/posts', name: 'Posts' }),
     ]);
-    expect(group.routes?.[0].icon).toBeDefined();
+    expect(result.current[0].icon).toBeDefined();
   });
 });

@@ -1,8 +1,16 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import LoginPage from './index';
 
-// config.ts reads import.meta.env (Vite-only syntax) — replace it wholesale.
-jest.mock('@/refine/config', () => ({ ADMIN_API_URL: 'http://api.test' }));
+// config.ts and defaultSettings.ts read import.meta.env (Vite-only syntax) —
+// replace them wholesale.
+jest.mock('@/refine/config', () => ({
+  ADMIN_API_URL: 'http://api.test',
+  PUBLIC_BASE_URL: '/',
+}));
+jest.mock('@/app/defaultSettings', () => ({
+  __esModule: true,
+  default: { title: 'Admin' },
+}));
 
 // react-intl v10 ships ESM-only; the page only needs formatMessage.
 jest.mock('react-intl', () => ({

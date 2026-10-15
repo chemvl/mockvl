@@ -48,6 +48,13 @@ jobs:
         working-directory: .
         run: bun install --frozen-lockfile
 
+      - name: Generate API client
+        # src/client is gitignored; regenerate it from the API's spec, dumped
+        # offline (no server/DB needed) so it matches this commit's routes.
+        run: |
+          bun run --cwd ../.. openapi:dump
+          bun run client:generate
+
       - name: Typecheck
         run: bun run tsc
 

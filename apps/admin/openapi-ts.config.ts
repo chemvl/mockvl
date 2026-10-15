@@ -1,16 +1,10 @@
 import { defineConfig } from '@hey-api/openapi-ts';
-import { loadEnv } from 'vite';
 
-const env = loadEnv('development', process.cwd(), '');
-
-if (!env.VITE_APP_API_ENDPOINT) {
-  throw new Error(
-    'VITE_APP_API_ENDPOINT is not set. Add it to .env.development before running codegen.',
-  );
-}
-
+// Input is the document dumped by `bun run openapi:dump` (repo root) — the same
+// spec apps/ui generates from — so codegen is deterministic and needs no
+// running server (CI generates the gitignored src/client this way).
 export default defineConfig({
-  input: `${env.VITE_APP_API_ENDPOINT}/api/openapi.json`,
+  input: '../ui/openapi.json',
   output: 'src/client',
   plugins: [
     // Generated paths already carry the API_BASE_PATH prefix (/api/...), so the

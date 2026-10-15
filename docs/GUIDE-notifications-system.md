@@ -260,8 +260,8 @@ House rules that apply here:
 
 - **Never hand-write fetches** — use the generated client
   (`src/client/@tanstack/react-query.gen.ts`). After changing admin API
-  routes/schemas, regenerate with `bun run client:generate` (reads
-  `VITE_APP_API_ENDPOINT`, so the API must be running).
+  routes/schemas, regenerate with `bun run openapi:dump` (repo root) then
+  `bun run client:generate`.
 - Forms use **react-hook-form + `src/components/Form/FormItem.tsx`**, never
   antd `Form` logic.
 - After a mutation, `queryClient.invalidateQueries({ queryKey: NOTIFICATIONS_LIST_KEY })`
@@ -289,7 +289,7 @@ Integration points if you rename/move things: lazy route in
    route serializer (`serializeNotification`).
 4. If the app must receive it: include it in `buildDataPayload()` in
    `push-send.ts` (FCM `data` values must be **strings**).
-5. Admin UI: `bun run client:generate`, then surface it in
+5. Admin UI: `bun run openapi:dump` + `bun run client:generate`, then surface it in
    `ComposeModal.tsx`/`DetailDrawer.tsx`.
 
 ### Test push delivery end to end in dev

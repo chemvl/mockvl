@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl';
 import { useSearchParams } from 'react-router';
 import Settings from '@/app/defaultSettings';
 import { Footer } from '@/components';
-import { ADMIN_API_URL } from '@/refine/config';
+import { ADMIN_API_URL, PUBLIC_BASE_URL } from '@/refine/config';
 import { hardNavigate } from '@/refine/navigation';
 
 const useStyles = createStyles(({ token }) => ({
@@ -15,7 +15,7 @@ const useStyles = createStyles(({ token }) => ({
     flexDirection: 'column',
     height: '100vh',
     overflow: 'auto',
-    backgroundImage: `url('${import.meta.env.BASE_URL}images/bg.png')`,
+    backgroundImage: `url('${PUBLIC_BASE_URL}images/bg.png')`,
     backgroundSize: '100% 100%',
   },
   card: {
@@ -66,7 +66,7 @@ export default function LoginPage() {
         <div className={styles.card}>
           <Space align="center">
             <img
-              src={`${import.meta.env.BASE_URL}logo.svg`}
+              src={`${PUBLIC_BASE_URL}logo.svg`}
               alt="logo"
               className={styles.logo}
             />

@@ -345,7 +345,7 @@ bun run lint               # Biome
 bun run test:unit          # no services needed
 bun run test               # full suite; needs `docker compose up -d` (uses a separate app_test database)
 bun run db:generate        # new migration after editing apps/api/src/db/schema
-bun run openapi:dump       # refresh apps/ui/openapi.json, then: bun run --cwd apps/ui openapi-ts
+bun run openapi:dump       # refresh apps/ui/openapi.json, then: bun run --cwd apps/ui openapi-ts && bun run --cwd apps/admin client:generate
 ```
 
 Admin checks: `bun run --cwd apps/admin tsc && bun run --cwd apps/admin biome:lint && bun run --cwd apps/admin test`. App checks: `bun run --cwd apps/ui lint`.

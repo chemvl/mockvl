@@ -52,7 +52,7 @@ values.** The app reads the following `VITE_*` keys:
 
 | Variable | Purpose |
 | --- | --- |
-| `VITE_APP_API_ENDPOINT` | Backend API base URL. Vite proxies `/api` to this in dev and the API client is generated against it. |
+| `VITE_APP_API_ENDPOINT` | Backend API base URL. Vite proxies `/api` to this in dev. |
 | `VITE_APP_PROJECT_NAME` | Display/project name. |
 | `VITE_BASE_URL` | App base path. |
 | `VITE_BASE_URL_PUBLIC` | Public asset base path. |
@@ -144,7 +144,7 @@ npx jest src/pages/user/login/login.test.tsx
 
 | Command | Description |
 | --- | --- |
-| `bun run client:generate` | Regenerate `src/client/` from `openapi-ts.config.ts`. |
+| `bun run client:generate` | Regenerate `src/client/` from `../ui/openapi.json` (refresh it first with `bun run openapi:dump` at the repo root). |
 
 ### Deploy
 
@@ -156,15 +156,18 @@ npx jest src/pages/user/login/login.test.tsx
 
 ## API Client Generation
 
-The typed client in `src/client/` is **auto-generated** by
-[`@hey-api/openapi-ts`](https://heyapi.dev/) from `openapi-ts.config.ts` (which reads
-`VITE_APP_API_ENDPOINT`). It produces SDK functions, request/response types, and ready-to-use
-TanStack Query `queryOptions` / `mutationOptions`.
+The typed client in `src/client/` is **auto-generated** (and gitignored) by
+[`@hey-api/openapi-ts`](https://heyapi.dev/) from `openapi-ts.config.ts`, which reads the spec
+dumped offline by the API (`apps/ui/openapi.json`) — no running server needed. It produces SDK
+functions, request/response types, and ready-to-use TanStack Query `queryOptions` /
+`mutationOptions`. CI (`.github/workflows/admin.yml`) regenerates it the same way before
+typechecking.
 
 - **Never edit `src/client/` by hand** — changes are overwritten on regeneration.
-- Regenerate after the API schema changes:
+- Generate after cloning, and regenerate after the API schema changes:
 
 ```bash
+bun run --cwd ../.. openapi:dump
 bun run client:generate
 ```
 

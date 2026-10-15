@@ -10,3 +10,6 @@ export const ADMIN_API_URL: string =
 // builds must set VITE_ADMIN_BASENAME=/admin; local dev serves from '/'.
 export const ADMIN_BASENAME: string =
   import.meta.env.VITE_ADMIN_BASENAME ?? '/';
+
+// Vite's deploy base path (always ends with '/'); prefix for public/ assets.
+export const PUBLIC_BASE_URL: string = import.meta.env.BASE_URL;

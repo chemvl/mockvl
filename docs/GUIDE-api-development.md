@@ -949,7 +949,7 @@ schemas that validate at runtime, the generated types cannot drift from the
 server. After adding or changing an endpoint:
 
 ```bash
-bun run dev                                   # API must be serving /api/openapi.json
+bun run openapi:dump                          # writes apps/ui/openapi.json (offline)
 cd apps/admin && bun run client:generate      # regenerates src/client/
 ```
 
