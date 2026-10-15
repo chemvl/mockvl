@@ -41,7 +41,7 @@ function encodeSubject(subject: string): string {
 // "-" is not in the base64 alphabet, so a boundary containing it can never
 // collide with an encoded body line.
 function makeBoundary(): string {
-  return `----=_mockyard-${Math.random().toString(36).slice(2)}-${Date.now().toString(36)}`;
+  return `----=_mockvl-${Math.random().toString(36).slice(2)}-${Date.now().toString(36)}`;
 }
 
 // From/To are the only header values interpolated raw; a CR/LF/NUL here

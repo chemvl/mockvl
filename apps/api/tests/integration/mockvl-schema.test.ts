@@ -34,7 +34,7 @@ afterAll(async () => {
 async function insertUser() {
   const [user] = await db
     .insert(users)
-    .values({ email: `mockyard-schema-${crypto.randomUUID()}@example.com`, passwordHash: null })
+    .values({ email: `mockvl-schema-${crypto.randomUUID()}@example.com`, passwordHash: null })
     .returning();
   if (!user) throw new Error("user insert returned no row");
   userIds.push(user.id);
@@ -102,7 +102,7 @@ async function insertVersion(mockId: string, number: number) {
   return version;
 }
 
-describe("Mockyard tables", () => {
+describe("Mockvl tables", () => {
   test("workspace slugs are globally unique and each user has one personal workspace", async () => {
     const owner = await insertUser();
     const other = await insertUser();

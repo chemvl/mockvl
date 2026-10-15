@@ -19,7 +19,7 @@ import { createMembersService } from "@/modules/workspaces/members.service";
 import { createWorkspacesRepo } from "@/modules/workspaces/workspaces.repo";
 import { createWorkspacesService } from "@/modules/workspaces/workspaces.service";
 
-export interface MockyardServiceOptions {
+export interface MockvlServiceOptions {
   // Stands in for the SSRF-safe fetcher; default fails loudly.
   fetchUrl?: (url: string) => Promise<string>;
   // Receives every invalidated cache key.
@@ -30,10 +30,10 @@ export interface MockyardServiceOptions {
   enqueue?: Enqueue;
 }
 
-// The Mockyard service graph over a test-owned pool, with no network: URL
+// The Mockvl service graph over a test-owned pool, with no network: URL
 // fetches are faked, invalidation is recorded (and forwarded to a real cache
 // only when options.invalidate is given).
-export function createMockyardServices(db: Db, options: MockyardServiceOptions = {}) {
+export function createMockvlServices(db: Db, options: MockvlServiceOptions = {}) {
   const invalidate: InvalidateFn = async (...keys) => {
     options.invalidated?.push(...keys);
     await options.invalidate?.(...keys);

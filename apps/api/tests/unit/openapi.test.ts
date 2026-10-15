@@ -95,7 +95,7 @@ describe("operationIds", () => {
     expect(paths["/api/users/me"]?.get?.operationId).toBe("getMe");
   });
 
-  test("Mockyard routes carry the spec's operationIds", async () => {
+  test("Mockvl routes carry the spec's operationIds", async () => {
     const paths = (await fetchSpec()).paths as unknown as OperationIds;
     const ws = "/api/workspaces/{ws}";
     expect(paths["/api/workspaces"]?.get?.operationId).toBe("listWorkspaces");

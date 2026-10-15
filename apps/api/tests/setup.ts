@@ -26,7 +26,7 @@ process.env.APP_URL ??= "http://localhost:8080";
 // data-loss risk in sharing the dev instance.
 process.env.REDIS_URL ??= "redis://localhost:6380";
 process.env.LOG_LEVEL ??= "silent";
-// Mockyard (spec 2026-10-07). APP_GOOGLE_ALLOWED_HD is deleted, not
+// Mockvl (spec 2026-10-07). APP_GOOGLE_ALLOWED_HD is deleted, not
 // defaulted: domain-restriction tests inject `allowedHd` explicitly, and a
 // value leaking from the root .env would reject every test sign-in.
 delete process.env.APP_GOOGLE_ALLOWED_HD;

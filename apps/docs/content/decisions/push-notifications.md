@@ -7,7 +7,7 @@ order: 3
 Historical record — describes decisions as they were made in July 2026. The living
 documentation is at /guides/notifications-system/ (backend). The client-facing device
 registration and inbox endpoints described below were later removed when the API was
-trimmed to Mockyard; the admin console, `push-send` worker, and FCM client remain.
+trimmed to Mockvl; the admin console, `push-send` worker, and FCM client remain.
 
 ## Context
 

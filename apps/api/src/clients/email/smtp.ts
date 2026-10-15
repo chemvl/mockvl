@@ -12,7 +12,7 @@ import type { EmailMessage, EmailSender } from "./types";
 const DEFAULT_TIMEOUT_MS = 10_000;
 // EHLO argument is the client's self-identification; servers only require a
 // syntactically valid name — nothing routes on it.
-const EHLO_NAME = "mockyard-api";
+const EHLO_NAME = "mockvl-api";
 
 export interface SmtpClientOptions {
   host: string;

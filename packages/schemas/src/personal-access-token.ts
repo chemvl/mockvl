@@ -36,7 +36,7 @@ export const CreatedPersonalAccessTokenSchema = z
   .object({
     token: PersonalAccessTokenSchema,
     plaintextToken: z.string().openapi({ description: "Shown once; never retrievable again" }),
-    mcpUrl: z.url().openapi({ example: "https://mockyard.example.com/api/mcp" }),
+    mcpUrl: z.url().openapi({ example: "https://mockvl.example.com/api/mcp" }),
   })
   .openapi("CreatedPersonalAccessToken");
 export type CreatedPersonalAccessToken = z.infer<typeof CreatedPersonalAccessTokenSchema>;

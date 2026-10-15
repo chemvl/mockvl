@@ -46,7 +46,7 @@ const EnvSchema = z
     ADMIN_SESSION_SECRET: z.string().min(MIN_SECRET_LENGTH),
     ADMIN_URL: z.url(),
     API_URL: z.url(),
-    // Public app origin (the Mockyard SPA). Neither ADMIN_URL (dashboard) nor
+    // Public app origin (the Mockvl SPA). Neither ADMIN_URL (dashboard) nor
     // API_URL (this API) is the user-facing app, so this is its own required
     // key; MOCK_PUBLIC_BASE_URL defaults to `${APP_URL}/m`.
     APP_URL: z.url(),
@@ -137,7 +137,7 @@ const EnvSchema = z
     RATE_LIMIT_GLOBAL_WINDOW_MS: z.coerce.number().int().min(1).default(60_000),
     RATE_LIMIT_AUTH_LIMIT: z.coerce.number().int().min(1).default(10),
     RATE_LIMIT_AUTH_WINDOW_MS: z.coerce.number().int().min(1).default(60_000),
-    // Mockyard.
+    // Mockvl.
     // Public base of hosted mocks. Unset or "" = `${APP_URL}/m`, filled in by
     // the transform at the end of this schema (the default depends on APP_URL).
     MOCK_PUBLIC_BASE_URL: z.preprocess(

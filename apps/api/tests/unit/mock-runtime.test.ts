@@ -152,7 +152,7 @@ describe("response serialization", () => {
       "content-type": "application/problem+json",
     });
     expect(JSON.parse(serialized.body ?? "{}")).toEqual({
-      type: "https://mockyard.dev/errors#NOT_FOUND",
+      type: "https://mockvl.dev/errors#NOT_FOUND",
       title: "Mock not found",
       status: 404,
       detail: "No mock is published at this URL.",

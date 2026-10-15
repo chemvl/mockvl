@@ -8,8 +8,8 @@ export interface SectionConfig {
 }
 
 export const site = {
-  title: "Mockyard",
-  tagline: "Developer documentation for the Mockyard API",
+  title: "Mockvl",
+  tagline: "Developer documentation for the Mockvl API",
   sections: [
     { slug: "getting-started", label: "Getting Started" },
     { slug: "architecture", label: "Architecture & Conventions" },

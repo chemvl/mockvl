@@ -1,5 +1,5 @@
 // Session = in-memory access token + refresh token in localStorage (spec: Auth).
-export const REFRESH_TOKEN_KEY = "mockyard.refresh";
+export const REFRESH_TOKEN_KEY = "mockvl.refresh";
 
 let accessToken: string | null = null;
 const listeners = new Set<() => void>();

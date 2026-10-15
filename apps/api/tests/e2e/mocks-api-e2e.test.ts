@@ -17,7 +17,7 @@ import { env } from "@/config/env";
 import { createPool } from "@/db/client";
 import * as schema from "@/db/schema";
 import { createTestUser } from "../helpers/app-user";
-import { createMockyardServices } from "../helpers/mockyard";
+import { createMockvlServices } from "../helpers/mockvl";
 import { prepareTestDatabase } from "../helpers/test-db";
 
 await prepareTestDatabase();
@@ -31,7 +31,7 @@ const orders = await Bun.file(join(FIXTURES, "orders-3.1.json")).text();
 const externalRef = await Bun.file(join(FIXTURES, "external-ref.yaml")).text();
 const REMOTE_URL = "https://specs.example.test/orders.json";
 
-const services = createMockyardServices(db, {
+const services = createMockvlServices(db, {
   fetchUrl: async (url) => {
     if (url !== REMOTE_URL) throw new Error(`unexpected fetch ${url}`);
     return orders;
@@ -75,7 +75,7 @@ async function errorCode(res: Response, status: number): Promise<string> {
   return ((await res.json()) as { error: { code: string } }).error.code;
 }
 
-describe("Mockyard management API", () => {
+describe("Mockvl management API", () => {
   test("full management flow", async () => {
     const token = await signIn();
     const [workspace] = await data<Workspace[]>(await call(token, "GET", "/workspaces"));

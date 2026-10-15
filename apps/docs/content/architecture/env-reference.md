@@ -51,7 +51,7 @@ Rules that apply across the board:
 | `ADMIN_SESSION_SECRET` | string, min 32 chars | — (required) | HMAC key for hashing admin session tokens in the DB |
 | `ADMIN_URL` | URL, e.g. `http://localhost:8000` | — (required) | Admin app origin: the only CORS origin, and the post-login redirect target |
 | `API_URL` | URL, e.g. `http://localhost:3000` | — (required) | Public URL of this API (builds the Google redirect URI) |
-| `APP_URL` | URL, e.g. `http://localhost:8080` | — (required) | Public app origin (the Mockyard SPA). Neither `ADMIN_URL` (dashboard) nor `API_URL` (this API) is the user-facing app; `MOCK_PUBLIC_BASE_URL` defaults to `${APP_URL}/m` |
+| `APP_URL` | URL, e.g. `http://localhost:8080` | — (required) | Public app origin (the Mockvl SPA). Neither `ADMIN_URL` (dashboard) nor `API_URL` (this API) is the user-facing app; `MOCK_PUBLIC_BASE_URL` defaults to `${APP_URL}/m` |
 | `ADMIN_SEED_OWNER_EMAIL` | email (optional) | — | First-owner seeding: an admin logging in with this email is created as (or promoted to) `owner`; everyone else defaults to `viewer` |
 
 ## FCM push (all-or-none)

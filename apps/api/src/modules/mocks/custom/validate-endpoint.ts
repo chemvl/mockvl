@@ -20,7 +20,7 @@ const BLOCKED_HEADERS = new Set([
   "transfer-encoding",
   "connection",
 ]);
-const BLOCKED_HEADER_PREFIXES = ["access-control-", "x-mockyard-"];
+const BLOCKED_HEADER_PREFIXES = ["access-control-", "x-mockvl-"];
 
 function segments(path: string): string[] {
   return path === "/" ? [] : path.slice(1).split("/");

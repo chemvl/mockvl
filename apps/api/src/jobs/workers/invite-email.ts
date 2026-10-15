@@ -14,7 +14,7 @@ export const INVITE_EMAIL_QUEUE_OPTIONS: Omit<Queue, "name"> = {
   retryBackoff: true,
 };
 
-const PRODUCT_NAME = "Mockyard";
+const PRODUCT_NAME = "Mockvl";
 
 export interface InviteEmailWorkerDeps {
   loadInvite: (inviteId: string) => Promise<InviteEmailContext | undefined>;

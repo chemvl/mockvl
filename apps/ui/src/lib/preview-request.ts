@@ -17,7 +17,7 @@ export type PreviewResult = {
   statusText: string;
   durationMs: number;
   contentType: string | null;
-  /** The mock served a saved custom response (x-mockyard-override: 1). */
+  /** The mock served a saved custom response (x-mockvl-override: 1). */
   overridden: boolean;
   /** Body text exactly as received. */
   raw: string;
@@ -25,7 +25,7 @@ export type PreviewResult = {
   body: { kind: "json"; value: unknown } | { kind: "text"; text: string } | { kind: "empty" };
 };
 
-export const OVERRIDE_HEADER = "x-mockyard-override";
+export const OVERRIDE_HEADER = "x-mockvl-override";
 
 /** The sent `Prefer` header: pill first, then the dropdown, e.g. "code=404, example=notFound". */
 export function preferHeader(values: Pick<PreviewValues, "code" | "prefer">): string {

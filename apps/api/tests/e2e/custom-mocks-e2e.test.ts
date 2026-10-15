@@ -22,7 +22,7 @@ import { importSchemaContent } from "@/modules/mocks/import/importer";
 import { createUsageCounter } from "@/modules/usage/usage-counter";
 import { createRootApp } from "@/root";
 import { createTestUser } from "../helpers/app-user";
-import { createMockyardServices } from "../helpers/mockyard";
+import { createMockvlServices } from "../helpers/mockvl";
 import { prepareTestDatabase } from "../helpers/test-db";
 
 // Requires the compose Postgres and Redis (docker compose up -d).
@@ -38,7 +38,7 @@ const userIds: string[] = [];
 const FIXTURES = join(import.meta.dir, "../fixtures/schemas");
 const petstore = await Bun.file(join(FIXTURES, "petstore-3.0.yaml")).text();
 
-const services = createMockyardServices(db, { invalidate: cache.invalidate });
+const services = createMockvlServices(db, { invalidate: cache.invalidate });
 // The route cache isn't under test: pass-through keeps PATCH / replace visible at once.
 const passthrough: CachedFn = (_key, _ttl, fn) => fn();
 const root = createRootApp({
@@ -280,7 +280,7 @@ describe("Custom endpoints", () => {
     });
     const renamed = await hit("/people/1");
     expect(await renamed.json()).toEqual({ id: 8 });
-    expect(renamed.headers.get("x-mockyard-override")).toBeNull();
+    expect(renamed.headers.get("x-mockvl-override")).toBeNull();
     const overrides = await dataOf<MockOverride[]>(
       await call(token, "GET", `${mockPath}/overrides`),
     );

@@ -15,7 +15,7 @@ import { createPool } from "@/db/client";
 import * as schema from "@/db/schema";
 import type { InviteEmailJob } from "@/jobs/types";
 import { createTestUser } from "../helpers/app-user";
-import { createMockyardServices } from "../helpers/mockyard";
+import { createMockvlServices } from "../helpers/mockvl";
 import { prepareTestDatabase } from "../helpers/test-db";
 
 await prepareTestDatabase();
@@ -25,7 +25,7 @@ const userIds: string[] = [];
 const workspaceIds: string[] = [];
 
 const enqueued: InviteEmailJob[] = [];
-const services = createMockyardServices(db, {
+const services = createMockvlServices(db, {
   enqueue: async (_name, data) => {
     enqueued.push(data as InviteEmailJob);
     return null;

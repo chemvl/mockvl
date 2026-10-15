@@ -1,4 +1,4 @@
-// Mockyard limits.
+// Mockvl limits.
 export const MAX_SCHEMA_BYTES = 5 * 1024 * 1024;
 export const MAX_OPERATIONS = 1000;
 export const MAX_MOCKS_PER_WORKSPACE = 50;

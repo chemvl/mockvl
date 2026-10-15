@@ -2,7 +2,7 @@ import { WorkspaceAdminSchema, workspaceFields } from "@starter/schemas";
 import { workspaces } from "@/db/schema";
 import type { AdminResourceDef } from "../registry";
 
-// Read-only: Mockyard invariants (owner trigger, slug history, audit rows,
+// Read-only: Mockvl invariants (owner trigger, slug history, audit rows,
 // mock route cache) live in modules/workspaces; the generic engine would
 // bypass them. No create/update/delete permissions → those routes are never
 // mounted.

@@ -21,7 +21,7 @@ const Settings: ProLayoutProps & {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: 'Mockyard Admin',
+  title: 'Mockvl Admin',
   pwa: true,
   // BASE_URL-relative so the logo resolves under any deploy base path.
   logo: `${import.meta.env.BASE_URL}logo.svg`,

@@ -1661,7 +1661,7 @@
           "mcpUrl": {
             "type": "string",
             "format": "uri",
-            "example": "https://mockyard.example.com/api/mcp"
+            "example": "https://mockvl.example.com/api/mcp"
           }
         },
         "required": [

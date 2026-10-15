@@ -37,7 +37,7 @@ await registerInviteEmailWorker(boss, {
   sender: emailSender ?? createLogOnlyEmailSender(),
   appUrl: env.APP_URL,
 });
-// Mockyard usage: Redis hourly counters → mock_usage_hourly every minute.
+// Mockvl usage: Redis hourly counters → mock_usage_hourly every minute.
 await registerFlushMockUsageWorker(boss, {
   client: redis,
   usageRepo: createUsageRepo(db.$primary),

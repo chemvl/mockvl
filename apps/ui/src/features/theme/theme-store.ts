@@ -4,7 +4,7 @@ import { useSyncExternalStore } from "react";
 // (tokens.scss). "system" is the default and follows the OS setting live.
 export type ThemePreference = "light" | "dark" | "system";
 
-export const THEME_KEY = "mockyard.theme";
+export const THEME_KEY = "mockvl.theme";
 
 const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
 const listeners = new Set<() => void>();

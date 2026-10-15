@@ -21,7 +21,7 @@ const BLOCKED_HEADERS = new Set([
   "transfer-encoding",
   "connection",
 ]);
-const BLOCKED_PREFIXES = ["access-control-", "x-mockyard-"];
+const BLOCKED_PREFIXES = ["access-control-", "x-mockvl-"];
 
 /** Why a header name will be rejected, or null when it's fine (blank rows are ignored). */
 export function headerProblem(name: string): string | null {

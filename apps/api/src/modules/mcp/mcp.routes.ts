@@ -11,7 +11,7 @@ import type {
   McpPrincipal,
   PersonalAccessTokensService,
 } from "@/modules/personal-access-tokens/personal-access-tokens.service";
-import { createMockyardMcpServer, type McpCaller, type McpMocksService } from "./mcp.tools";
+import { createMockvlMcpServer, type McpCaller, type McpMocksService } from "./mcp.tools";
 
 export interface McpRoutesDeps {
   personalAccessTokensService: Pick<PersonalAccessTokensService, "authenticate">;
@@ -55,7 +55,7 @@ export function createMcpRoutes(deps: McpRoutesDeps) {
   // Default response mode: plain JSON, since these tools emit no notifications
   // (`responseMode: "json"` would only add an SDK startup warning).
   const handler = createMcpHandler(({ authInfo }) =>
-    createMockyardMcpServer(callerFrom(authInfo), deps.mocksService),
+    createMockvlMcpServer(callerFrom(authInfo), deps.mocksService),
   );
 
   const router = createRouter();

@@ -1,6 +1,6 @@
-# Mockyard Admin
+# Mockvl Admin
 
-The Mockyard admin dashboard, built on **Vite + React 19 + React Router v7** with [Ant Design 6](https://ant.design/) and [ProComponents v3](https://procomponents.ant.design/), wired to the API via headless Refine.
+The Mockvl admin dashboard, built on **Vite + React 19 + React Router v7** with [Ant Design 6](https://ant.design/) and [ProComponents v3](https://procomponents.ant.design/), wired to the API via headless Refine.
 
 ---
 

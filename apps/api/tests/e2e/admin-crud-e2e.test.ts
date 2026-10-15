@@ -17,7 +17,7 @@ import { createPool } from "@/db/client";
 import * as schema from "@/db/schema";
 import { invalidate } from "@/lib/cache";
 import { createTestUser } from "../helpers/app-user";
-import { createMockyardServices } from "../helpers/mockyard";
+import { createMockvlServices } from "../helpers/mockvl";
 import { prepareTestDatabase } from "../helpers/test-db";
 
 // Phase 9b acceptance: Google-mocked login as editor can create and
@@ -38,7 +38,7 @@ const OWNER_EMAIL = `phase9b-owner-${runTag}@example.com`;
 const petstore = await Bun.file(
   join(import.meta.dir, "../fixtures/schemas/petstore-3.0.yaml"),
 ).text();
-const mockyard = createMockyardServices(db);
+const mockvl = createMockvlServices(db);
 
 let nextClaims: GoogleClaims = {};
 
@@ -270,15 +270,15 @@ describe("admin crud e2e (phase 9b acceptance)", () => {
     expect(created.status).toBe(404);
   });
 
-  test("mockyard workspaces and mocks are listed read-only", async () => {
+  test("mockvl workspaces and mocks are listed read-only", async () => {
     const { user } = await createTestUser(db, {
-      email: `phase9b-mockyard-${runTag}@example.com`,
+      email: `phase9b-mockvl-${runTag}@example.com`,
     });
     try {
       // First listing provisions the personal workspace.
-      const [workspace] = await mockyard.workspacesService.listForUser(user.id);
+      const [workspace] = await mockvl.workspacesService.listForUser(user.id);
       if (!workspace) throw new Error("personal workspace was not provisioned");
-      const mock = await mockyard.mocksService.create(workspace, user.id, {
+      const mock = await mockvl.mocksService.create(workspace, user.id, {
         name: "Pets",
         slug: "pets",
         responseMode: "static",

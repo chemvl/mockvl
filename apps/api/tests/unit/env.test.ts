@@ -279,7 +279,7 @@ describe("parseEnv", () => {
   });
 });
 
-describe("Mockyard env keys", () => {
+describe("Mockvl env keys", () => {
   test("MOCK_PUBLIC_BASE_URL defaults to APP_URL + /m and never ends with a slash", () => {
     expect(parseEnv(VALID_SOURCE).MOCK_PUBLIC_BASE_URL).toBe("http://localhost:8080/m");
     expect(parseEnv({ ...VALID_SOURCE, APP_URL: "https://app.test/" }).MOCK_PUBLIC_BASE_URL).toBe(

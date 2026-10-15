@@ -57,9 +57,9 @@ describe("invite-email handler", () => {
     expect(sent).toEqual([
       {
         to: "sam@example.com",
-        subject: "Jane Doe invited you to Platform <Team> on Mockyard",
-        text: `Jane Doe invited you to join Platform <Team> on Mockyard: ${url}`,
-        html: `<p>Jane Doe invited you to join Platform &lt;Team&gt; on Mockyard. <a href="${url}">Accept the invite</a></p>`,
+        subject: "Jane Doe invited you to Platform <Team> on Mockvl",
+        text: `Jane Doe invited you to join Platform <Team> on Mockvl: ${url}`,
+        html: `<p>Jane Doe invited you to join Platform &lt;Team&gt; on Mockvl. <a href="${url}">Accept the invite</a></p>`,
       },
     ]);
   });
@@ -69,7 +69,7 @@ describe("invite-email handler", () => {
     const byEmail = setup({ tokenHash: hashOpaqueToken(token), inviterName: null });
     await byEmail.run(token);
     expect(byEmail.sent[0]?.subject).toBe(
-      "jane@example.com invited you to Platform <Team> on Mockyard",
+      "jane@example.com invited you to Platform <Team> on Mockvl",
     );
 
     const deleted = setup({
@@ -78,6 +78,6 @@ describe("invite-email handler", () => {
       inviterEmail: null,
     });
     await deleted.run(token);
-    expect(deleted.sent[0]?.subject).toBe("Someone invited you to Platform <Team> on Mockyard");
+    expect(deleted.sent[0]?.subject).toBe("Someone invited you to Platform <Team> on Mockvl");
   });
 });

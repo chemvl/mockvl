@@ -76,7 +76,7 @@ export function CreateTokenModal({ workspace, onClose }: CreateTokenModalProps) 
 
   if (created) {
     const authorization = `Bearer ${created.plaintextToken}`;
-    const config = { mcpServers: { mockyard: { type: "http", url: created.mcpUrl, headers: { Authorization: authorization } } } };
+    const config = { mcpServers: { mockvl: { type: "http", url: created.mcpUrl, headers: { Authorization: authorization } } } };
     return (
       <Modal
         title="Copy your token"
@@ -92,7 +92,7 @@ export function CreateTokenModal({ workspace, onClose }: CreateTokenModalProps) 
         <Snippet label="Token" text={created.plaintextToken} />
         <Snippet
           label="Claude Code"
-          text={`claude mcp add --transport http mockyard ${created.mcpUrl} --header "Authorization: ${authorization}"`}
+          text={`claude mcp add --transport http mockvl ${created.mcpUrl} --header "Authorization: ${authorization}"`}
         />
         <Snippet label="MCP client config" text={JSON.stringify(config, null, 2)} />
       </Modal>

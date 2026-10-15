@@ -25,7 +25,7 @@ export interface RateLimitOverrides {
 // (e.g. bulk import) ever lands.
 const BODY_LIMIT_BYTES = 1024 * 1024;
 
-// The Mockyard schema routes carry a whole OpenAPI/Postman document (≤ 5 MiB)
+// The Mockvl schema routes carry a whole OpenAPI/Postman document (≤ 5 MiB)
 // inside JSON; they get SCHEMA_ROUTE_BODY_LIMIT_BYTES and the global limit
 // skips them. Matched on the full path because this runs before routing.
 const SCHEMA_ROUTE_PATTERN =

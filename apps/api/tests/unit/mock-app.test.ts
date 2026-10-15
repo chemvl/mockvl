@@ -244,7 +244,7 @@ describe("createMockApp", () => {
     const unknownMock = await app.request("/m/jane/nope/pets/1");
     expect(unknownMock.status).toBe(404);
     expect(await unknownMock.json()).toEqual({
-      type: "https://mockyard.dev/errors#NOT_FOUND",
+      type: "https://mockvl.dev/errors#NOT_FOUND",
       title: "Mock not found",
       status: 404,
       detail: "No mock is published at this URL.",
@@ -302,7 +302,7 @@ describe("response overrides", () => {
     expect(res.status).toBe(200);
     expect(await res.text()).toBe(saved);
     expect(res.headers.get("content-type")).toBe("application/json");
-    expect(res.headers.get("x-mockyard-override")).toBe("1");
+    expect(res.headers.get("x-mockvl-override")).toBe("1");
     expect(res.headers.get("access-control-allow-origin")).toBe("*");
     expect(lookups).toEqual([`${MOCK_ID} get /pets/{id} 200`]);
 
@@ -310,7 +310,7 @@ describe("response overrides", () => {
     const notFound = await app.request("/m/jane/pets/pets/42", { headers: { prefer: "code=404" } });
     expect(notFound.status).toBe(404);
     expect(await notFound.json()).toEqual({ message: "Pet not found" });
-    expect(notFound.headers.get("x-mockyard-override")).toBeNull();
+    expect(notFound.headers.get("x-mockvl-override")).toBeNull();
     expect(lookups.at(-1)).toBe(`${MOCK_ID} get /pets/{id} 404`);
   });
 
@@ -336,7 +336,7 @@ describe("response overrides", () => {
     );
     expect(invalid.status).toBe(422);
     expect(await invalid.json()).toEqual({ error: "bad id" });
-    expect(invalid.headers.get("x-mockyard-override")).toBeNull();
+    expect(invalid.headers.get("x-mockvl-override")).toBeNull();
     expect(lookups).toEqual([]);
 
     // With request validation off the same request is clean → overridden.

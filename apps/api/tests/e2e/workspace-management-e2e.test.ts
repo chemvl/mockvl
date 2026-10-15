@@ -9,7 +9,7 @@ import { createPool } from "@/db/client";
 import * as schema from "@/db/schema";
 import { createWorkspacesRepo } from "@/modules/workspaces/workspaces.repo";
 import { createTestUser } from "../helpers/app-user";
-import { createMockyardServices } from "../helpers/mockyard";
+import { createMockvlServices } from "../helpers/mockvl";
 import { prepareTestDatabase } from "../helpers/test-db";
 
 await prepareTestDatabase();
@@ -19,7 +19,7 @@ const userIds: string[] = [];
 const workspaceIds: string[] = [];
 const invalidated: string[] = [];
 
-const services = createMockyardServices(db, { invalidated });
+const services = createMockvlServices(db, { invalidated });
 const app = createApp({
   workspacesService: services.workspacesService,
   mocksService: services.mocksService,

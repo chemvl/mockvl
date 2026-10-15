@@ -1,4 +1,4 @@
-# @starter/ui — Mockyard web app
+# @starter/ui — Mockvl web app
 
 Vite 8 + React 19 SPA for hosted Prism mock servers.
 

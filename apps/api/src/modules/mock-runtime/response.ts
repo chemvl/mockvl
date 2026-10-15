@@ -15,35 +15,35 @@ export interface Problem {
   [extra: string]: unknown;
 }
 
-export const MOCKYARD_ERROR_TYPE = "https://mockyard.dev/errors#";
+export const MOCKVL_ERROR_TYPE = "https://mockvl.dev/errors#";
 
 export const MOCK_PROBLEMS = {
   notFound: {
-    type: `${MOCKYARD_ERROR_TYPE}NOT_FOUND`,
+    type: `${MOCKVL_ERROR_TYPE}NOT_FOUND`,
     title: "Mock not found",
     status: 404,
     detail: "No mock is published at this URL.",
   },
   paused: {
-    type: `${MOCKYARD_ERROR_TYPE}MOCK_PAUSED`,
+    type: `${MOCKVL_ERROR_TYPE}MOCK_PAUSED`,
     title: "Mock paused",
     status: 503,
     detail: "This mock is paused. Requests return 503 until it is resumed.",
   },
   methodNotAllowed: {
-    type: `${MOCKYARD_ERROR_TYPE}METHOD_NOT_ALLOWED`,
+    type: `${MOCKVL_ERROR_TYPE}METHOD_NOT_ALLOWED`,
     title: "Method not allowed",
     status: 405,
     detail: "Mocks answer GET, PUT, POST, DELETE, OPTIONS, HEAD, PATCH and TRACE.",
   },
   internal: {
-    type: `${MOCKYARD_ERROR_TYPE}INTERNAL`,
+    type: `${MOCKVL_ERROR_TYPE}INTERNAL`,
     title: "Mock server error",
     status: 500,
     detail: "The mock server failed to handle this request.",
   },
   invalidPreference: (detail: string): Problem => ({
-    type: `${MOCKYARD_ERROR_TYPE}INVALID_PREFERENCE`,
+    type: `${MOCKVL_ERROR_TYPE}INVALID_PREFERENCE`,
     title: "Invalid Prefer value",
     status: 422,
     detail,
@@ -78,7 +78,7 @@ export function serializePrismResponse(output: IHttpResponse): SerializedRespons
 
 // Marks responses that carry a saved body (overrides spec § Mock runtime 3);
 // readable cross-origin through access-control-expose-headers: *.
-export const OVERRIDE_HEADER = "x-mockyard-override";
+export const OVERRIDE_HEADER = "x-mockvl-override";
 
 // Prism's status and headers with the saved text as the body, sent byte for
 // byte. Prism's negotiated content-type is kept, defaulting to JSON.

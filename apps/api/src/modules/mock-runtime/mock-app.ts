@@ -26,7 +26,7 @@ import { parsePreferences } from "./prefer";
 import { mapRequest } from "./request-mapper";
 import {
   MOCK_PROBLEMS,
-  MOCKYARD_ERROR_TYPE,
+  MOCKVL_ERROR_TYPE,
   problemResponse,
   type SerializedResponse,
   serializeOverride,
@@ -68,7 +68,7 @@ const BASE_CONFIG = {
 // Prism's result doesn't say which operation it routed to. prism-core hands
 // `config.mock` to the mock component unchanged, so a request-scoped sink on
 // it receives the match (overrides spec § Mock runtime 1).
-const MATCH_SINK = Symbol("mockyard.match");
+const MATCH_SINK = Symbol("mockvl.match");
 
 interface MatchSink {
   method?: string;
@@ -108,7 +108,7 @@ export interface MockAppDeps {
   // supplied here; store/trustProxy come from the caller.
   rateLimit: RateLimitSettings;
   log?: Logger;
-  // Origin of the Mockyard SPA (APP_URL). Its endpoint preview calls mocks
+  // Origin of the Mockvl SPA (APP_URL). Its endpoint preview calls mocks
   // from the browser, so this origin is always admitted — even when the
   // mock's own CORS setting is off (MOCK_PUBLIC_BASE_URL may be another
   // origin). Still never with credentials.
@@ -126,7 +126,7 @@ export function createMockApp(deps: MockAppDeps): Hono<AppEnv> {
   const log = deps.log ?? defaultLogger;
   // Prism requires its own pino flavor (custom `success` level).
   const prism = createInstance(BASE_CONFIG, {
-    logger: createPrismLogger("mockyard", { level: "silent" }),
+    logger: createPrismLogger("mockvl", { level: "silent" }),
     mock: capturingMock,
     validateInput: commaSafeValidateInput,
   });
@@ -254,7 +254,7 @@ export function createMockApp(deps: MockAppDeps): Hono<AppEnv> {
     if (err instanceof AppError) {
       return send(
         problemResponse({
-          type: `${MOCKYARD_ERROR_TYPE}${err.code}`,
+          type: `${MOCKVL_ERROR_TYPE}${err.code}`,
           title: err.message,
           status: err.status,
           detail: err.message,

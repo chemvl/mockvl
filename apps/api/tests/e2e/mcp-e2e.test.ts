@@ -33,7 +33,7 @@ import { createRouteResolver } from "@/modules/mock-runtime/route-resolver";
 import { createUsageCounter } from "@/modules/usage/usage-counter";
 import { createRootApp } from "@/root";
 import { createTestUser } from "../helpers/app-user";
-import { createMockyardServices } from "../helpers/mockyard";
+import { createMockvlServices } from "../helpers/mockvl";
 import { prepareTestDatabase } from "../helpers/test-db";
 
 // Requires the compose Postgres and Redis (docker compose up -d).
@@ -48,7 +48,7 @@ const userIds: string[] = [];
 const FIXTURES = join(import.meta.dir, "../fixtures/schemas");
 const petstore = await Bun.file(join(FIXTURES, "petstore-3.0.yaml")).text();
 
-const services = createMockyardServices(db, { invalidate: cache.invalidate });
+const services = createMockvlServices(db, { invalidate: cache.invalidate });
 const passthrough: CachedFn = (_key, _ttl, fn) => fn();
 const root = createRootApp({
   api: createApp({
@@ -352,7 +352,7 @@ describe("MCP tools", () => {
       expect(saved.structuredContent).toMatchObject(key);
       const hit = await root.request(`/m/${ws.slug}/pets/pets/1`);
       expect(await hit.text()).toBe('{"id":7}');
-      expect(hit.headers.get("x-mockyard-override")).toBe("1");
+      expect(hit.headers.get("x-mockvl-override")).toBe("1");
 
       const endpoints = await client.callTool({
         name: "list_mock_endpoints",
@@ -376,7 +376,7 @@ describe("MCP tools", () => {
       const reset = await client.callTool({ name: "reset_mock_response", arguments: key });
       expect(reset.structuredContent).toMatchObject({ ...key, reset: true });
       const after = await root.request(`/m/${ws.slug}/pets/pets/1`);
-      expect(after.headers.get("x-mockyard-override")).toBeNull();
+      expect(after.headers.get("x-mockvl-override")).toBeNull();
     });
   });
 

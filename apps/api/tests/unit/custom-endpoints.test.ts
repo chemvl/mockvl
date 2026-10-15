@@ -219,7 +219,7 @@ describe("normalizeEndpoint", () => {
       "Set-Cookie",
       "CONTENT-TYPE",
       "Access-Control-Allow-Origin",
-      "X-Mockyard-Override",
+      "X-Mockvl-Override",
       "bad name",
     ]) {
       expect(codeOf(withHeaders({ [name]: "x" }))).toBe("RESPONSE_HEADER_INVALID");

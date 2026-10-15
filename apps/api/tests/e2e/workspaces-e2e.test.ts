@@ -13,7 +13,7 @@ import { NO_PERMISSION } from "@/modules/workspaces/workspaces.errors";
 import { createWorkspacesRepo } from "@/modules/workspaces/workspaces.repo";
 import { createWorkspacesService } from "@/modules/workspaces/workspaces.service";
 import { createTestUser } from "../helpers/app-user";
-import { createMockyardServices } from "../helpers/mockyard";
+import { createMockvlServices } from "../helpers/mockvl";
 import { prepareTestDatabase } from "../helpers/test-db";
 
 await prepareTestDatabase();
@@ -29,7 +29,7 @@ function buildApp(allowedHd?: string) {
       invalidate: async () => {},
       ...(allowedHd === undefined ? {} : { allowedHd }),
     }),
-    mocksService: createMockyardServices(db).mocksService,
+    mocksService: createMockvlServices(db).mocksService,
     rateLimit: { global: { windowMs: 60_000, limit: 10_000 } },
   });
 }

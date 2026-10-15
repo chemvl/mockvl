@@ -20,7 +20,7 @@ import { createRouteResolver } from "@/modules/mock-runtime/route-resolver";
 import { createUsageCounter } from "@/modules/usage/usage-counter";
 import { createRootApp } from "@/root";
 import { createTestUser } from "../helpers/app-user";
-import { createMockyardServices } from "../helpers/mockyard";
+import { createMockvlServices } from "../helpers/mockvl";
 import { prepareTestDatabase } from "../helpers/test-db";
 
 await prepareTestDatabase();
@@ -32,7 +32,7 @@ const FIXTURES = join(import.meta.dir, "../fixtures/schemas");
 const petstore = await Bun.file(join(FIXTURES, "petstore-3.0.yaml")).text();
 const orders = await Bun.file(join(FIXTURES, "orders-3.1.json")).text();
 
-const services = createMockyardServices(db);
+const services = createMockvlServices(db);
 const usageEvents: { key: string; fields: Record<string, number> }[] = [];
 // No Redis: the route cache is a pass-through (every request hits the DB, so
 // slug changes are visible immediately) and usage goes to an array.
@@ -67,7 +67,7 @@ afterAll(async () => {
   await pool.end({ timeout: 5 });
 });
 
-describe("Mockyard end to end (spec § Testing E2E)", () => {
+describe("Mockvl end to end (spec § Testing E2E)", () => {
   test("create → call → Prefer → validation → CORS → pause → replace → restore → slug change → delete", async () => {
     const { user, accessToken } = await createTestUser(db);
     userIds.push(user.id);

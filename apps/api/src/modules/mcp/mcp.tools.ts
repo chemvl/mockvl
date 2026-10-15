@@ -93,8 +93,8 @@ const WRITE_ANNOTATIONS = {
 
 // One server per HTTP request: the tool set reflects this caller's rights
 // right now, so read-only callers never see the write tools in tools/list.
-export function createMockyardMcpServer(caller: McpCaller, mocks: McpMocksService): McpServer {
-  const server = new McpServer({ name: "mockyard", version: "1.0.0" });
+export function createMockvlMcpServer(caller: McpCaller, mocks: McpMocksService): McpServer {
+  const server = new McpServer({ name: "mockvl", version: "1.0.0" });
   const ws = caller.workspace;
 
   function logWrite(tool: string, key: z.infer<z.ZodObject<typeof responseKeyShape>>): void {

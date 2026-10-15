@@ -11,7 +11,7 @@ const defaultLang: Record<string, string> = {
   'app.preview.down.block': 'Download this page to local project',
 
   // en-US/pages.ts
-  'pages.layouts.userLayout.title': 'Mockyard Admin',
+  'pages.layouts.userLayout.title': 'Mockvl Admin',
   'pages.login.accountLogin.tab': 'Account Login',
   'pages.login.accountLogin.errorMessage':
     'Incorrect username/password(admin/ant.design)',

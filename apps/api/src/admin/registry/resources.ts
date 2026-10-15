@@ -16,7 +16,7 @@ export interface DefaultRegistryDeps {
 // The index: one import + one register() call per resource. The defs live in
 // ./resources/<name>.resource.ts — full-CRUD posts, read-only users (PLAN 9b),
 // owner-managed admins (role management, the deferred 9b follow-up), and
-// read-only Mockyard workspaces and mocks.
+// read-only Mockvl workspaces and mocks.
 //
 // Adding an admin resource is four steps:
 //   1. Drizzle table in db/schema.

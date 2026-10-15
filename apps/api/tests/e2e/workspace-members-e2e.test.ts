@@ -8,7 +8,7 @@ import { env } from "@/config/env";
 import { createPool } from "@/db/client";
 import * as schema from "@/db/schema";
 import { createTestUser } from "../helpers/app-user";
-import { createMockyardServices } from "../helpers/mockyard";
+import { createMockvlServices } from "../helpers/mockvl";
 import { prepareTestDatabase } from "../helpers/test-db";
 
 await prepareTestDatabase();
@@ -17,7 +17,7 @@ const db = drizzle(pool, { schema });
 const userIds: string[] = [];
 const workspaceIds: string[] = [];
 
-const services = createMockyardServices(db);
+const services = createMockvlServices(db);
 const app = createApp({
   workspacesService: services.workspacesService,
   membersService: services.membersService,

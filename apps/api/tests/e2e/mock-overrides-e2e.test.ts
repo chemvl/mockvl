@@ -21,7 +21,7 @@ import { createRouteResolver } from "@/modules/mock-runtime/route-resolver";
 import { createUsageCounter } from "@/modules/usage/usage-counter";
 import { createRootApp } from "@/root";
 import { createTestUser } from "../helpers/app-user";
-import { createMockyardServices } from "../helpers/mockyard";
+import { createMockvlServices } from "../helpers/mockvl";
 import { prepareTestDatabase } from "../helpers/test-db";
 
 // Requires the compose Postgres and Redis (docker compose up -d).
@@ -38,7 +38,7 @@ const FIXTURES = join(import.meta.dir, "../fixtures/schemas");
 const petstore = await Bun.file(join(FIXTURES, "petstore-3.0.yaml")).text();
 const orders = await Bun.file(join(FIXTURES, "orders-3.1.json")).text();
 
-const services = createMockyardServices(db, { invalidate: cache.invalidate });
+const services = createMockvlServices(db, { invalidate: cache.invalidate });
 // The route cache isn't under test: pass-through keeps PATCH / replace visible at once.
 const passthrough: CachedFn = (_key, _ttl, fn) => fn();
 const root = createRootApp({
@@ -238,7 +238,7 @@ describe("Mock response overrides — runtime (spec § Testing E2E 1–7)", () =
       const res = await hit(rest);
       expect(res.status).toBe(200);
       expect(await res.text()).toBe(custom);
-      expect(res.headers.get("x-mockyard-override")).toBe("1");
+      expect(res.headers.get("x-mockvl-override")).toBe("1");
       expect(res.headers.get("content-type")).toBe("application/json");
     }
 
@@ -247,18 +247,18 @@ describe("Mock response overrides — runtime (spec § Testing E2E 1–7)", () =
     const before = await hit("/pets/1", { prefer: "code=404" });
     expect(before.status).toBe(404);
     expect(await before.json()).toEqual({ message: "Pet not found" });
-    expect(before.headers.get("x-mockyard-override")).toBeNull();
+    expect(before.headers.get("x-mockvl-override")).toBeNull();
     expect((await save(404, '{"error":"gone"}')).status).toBe(200);
     const after = await hit("/pets/1", { prefer: "code=404" });
     expect(after.status).toBe(404);
     expect(await after.text()).toBe('{"error":"gone"}');
-    expect(after.headers.get("x-mockyard-override")).toBe("1");
+    expect(after.headers.get("x-mockvl-override")).toBe("1");
 
     // 3. A request failing validation keeps Prism's 422.
     const invalid = await hit("/pets/abc");
     expect(invalid.status).toBe(422);
     expect(invalid.headers.get("content-type")).toBe("application/problem+json");
-    expect(invalid.headers.get("x-mockyard-override")).toBeNull();
+    expect(invalid.headers.get("x-mockvl-override")).toBeNull();
 
     // 4. Dynamic mode: the override still wins.
     expect((await call(token, "PATCH", mockPath, { responseMode: "dynamic" })).status).toBe(200);
@@ -273,7 +273,7 @@ describe("Mock response overrides — runtime (spec § Testing E2E 1–7)", () =
     expect(replaced.status).toBe(200);
     const gone = await hit("/pets/1");
     expect(gone.status).toBe(404);
-    expect(gone.headers.get("x-mockyard-override")).toBeNull();
+    expect(gone.headers.get("x-mockvl-override")).toBeNull();
     expect(keysOf(await listOf(token, base))).toEqual(["get /pets/{id} 200", "get /pets/{id} 404"]);
     expect((await call(token, "POST", `${mockPath}/versions/1/restore`)).status).toBe(200);
     expect(await (await hit("/pets/1")).text()).toBe(custom);
@@ -282,7 +282,7 @@ describe("Mock response overrides — runtime (spec § Testing E2E 1–7)", () =
     expect((await call(token, "DELETE", `${base}?${resetQuery(200)}`)).status).toBe(204);
     const reset = await hit("/pets/1");
     expect(await reset.json()).toEqual({ id: 1, name: "Rex" });
-    expect(reset.headers.get("x-mockyard-override")).toBeNull();
+    expect(reset.headers.get("x-mockvl-override")).toBeNull();
     expect(keysOf(await listOf(token, base))).toEqual(["get /pets/{id} 404"]);
   });
 });
