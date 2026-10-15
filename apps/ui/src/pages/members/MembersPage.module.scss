@@ -1,0 +1,178 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 48px;
+  align-items: start;
+}
+
+.member {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.memberName {
+  font: 500 14px/1.4 var(--font-sans);
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.memberEmail {
+  font: 400 13px/1.4 var(--font-sans);
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selectWrap {
+  position: relative;
+  display: block;
+}
+
+.select {
+  appearance: none;
+  width: 100%;
+  height: 32px;
+  padding: 0 28px 0 10px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--canvas);
+  font: 400 14px/1 var(--font-sans);
+  color: var(--ink);
+  cursor: pointer;
+  outline: none;
+}
+
+.select:focus-visible {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-ring);
+}
+
+.caret {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font: 400 12px/1 var(--font-sans);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.roleText {
+  font: 400 14px/1.4 var(--font-sans);
+  color: var(--muted);
+}
+
+.onlyYou {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 24px;
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
+}
+
+.onlyYouTitle {
+  margin: 0;
+  font: 400 22px/1.2 var(--font-display);
+  letter-spacing: -0.3px;
+  color: var(--ink);
+}
+
+.invites {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inviteCard {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.inviteRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 100px 220px auto;
+  grid-template-areas: "email role dates actions";
+  gap: 16px;
+  align-items: center;
+  padding: 14px 16px;
+}
+
+.inviteRow + .inviteRow {
+  border-top: 1px solid var(--hairline);
+}
+
+.inviteEmail {
+  grid-area: email;
+  min-width: 0;
+  font: 400 14px/1.4 var(--font-sans);
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inviteRole {
+  grid-area: role;
+  font: 400 13px/1.4 var(--font-sans);
+  color: var(--body);
+}
+
+.inviteDates {
+  grid-area: dates;
+  font: 400 13px/1.4 var(--font-sans);
+  color: var(--muted);
+}
+
+.inviteActions {
+  grid-area: actions;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
+}
+
+.roleItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.roleDescription {
+  font: 400 13px/1.55 var(--font-sans);
+  color: var(--body);
+}
+
+@media (max-width: 899px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  // Role stays top-right; the dates line moves under the email, actions beside it.
+  .inviteRow {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "email role"
+      "dates actions";
+    row-gap: 4px;
+  }
+
+  .inviteRole {
+    justify-self: end;
+  }
+}

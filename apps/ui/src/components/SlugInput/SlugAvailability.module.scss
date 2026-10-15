@@ -1,0 +1,10 @@
+.slug {
+  font-family: var(--font-mono);
+}
+
+// One StatusDot line (13px / 1.4). Flex drops the inline line-box strut so the height is exact.
+.line {
+  display: flex;
+  align-items: center;
+  min-height: calc(13px * 1.4);
+}

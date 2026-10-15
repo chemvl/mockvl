@@ -1,0 +1,30 @@
+{
+  "name": "api-starter",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun --watch apps/api/src/index.ts",
+    "worker": "bun apps/api/src/worker.ts",
+    "typecheck": "tsc --noEmit -p apps/api && tsc --noEmit -p apps/docs",
+    "lint": "biome check apps/api apps/docs/src apps/docs/assets apps/docs/site.config.ts packages",
+    "docs:dev": "bun run --cwd apps/docs dev",
+    "docs:build": "bun run --cwd apps/docs build",
+    "test": "bun test apps/api",
+    "test:unit": "bun test apps/api/tests/unit",
+    "test:integration": "bun test apps/api/tests/integration",
+    "test:e2e": "bun test apps/api/tests/e2e",
+    "schemas:generate": "bun run --cwd apps/api schemas:generate",
+    "module:generate": "bun run --cwd apps/api module:generate",
+    "db:generate": "bun run --cwd apps/api db:generate",
+    "db:migrate": "bun run --cwd apps/api db:migrate",
+    "db:studio": "bun run --cwd apps/api db:studio",
+    "openapi:dump": "bun apps/api/scripts/dump-openapi.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.2",
+    "typescript": "^6.0.3"
+  }
+}

@@ -1,0 +1,53 @@
+.picker {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fileRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+}
+
+.fileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.fileName {
+  font: 500 14px/1.4 var(--font-mono);
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileMeta {
+  font: 400 13px/1.4 var(--font-sans);
+  color: var(--muted);
+}
+
+.remove {
+  padding: 0 2px;
+  border: 0;
+  background: none;
+  font: 500 13px/1 var(--font-sans);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.hint {
+  font: 400 13px/1.55 var(--font-sans);
+  color: var(--muted);
+}

@@ -1,0 +1,30 @@
+{
+  "openapi": "3.1.0",
+  "info": { "title": "Orders", "version": "1" },
+  "paths": {
+    "/orders": {
+      "post": {
+        "summary": "Create order",
+        "requestBody": {
+          "content": { "application/json": { "schema": { "type": "object" } } }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Order" },
+                "example": { "id": "o-1" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Order": { "type": "object", "properties": { "id": { "type": "string" } } }
+    }
+  }
+}

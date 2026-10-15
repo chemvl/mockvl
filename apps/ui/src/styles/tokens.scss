@@ -1,0 +1,110 @@
+// Design tokens (AGENT-DESIGN-INSTRUCTIONS §2). The ONLY file with raw colors.
+:root {
+  color-scheme: light;
+
+  /* Brand & accent */
+  --primary: #cc785c;
+  --primary-active: #a9583e;
+  --primary-disabled: #e6dfd8;
+  --accent-teal: #5db8a6;
+  --accent-amber: #e8a55a;
+
+  /* Surfaces */
+  --canvas: #faf9f5;
+  --surface-soft: #f5f0e8;
+  --surface-card: #efe9de;
+  --surface-cream-strong: #e8dfd0;
+  --hairline: #e6dfd8;
+  --surface-dark: #181715;
+  --surface-dark-elevated: #252320;
+
+  /* Text */
+  --ink: #141413;
+  --body: #3d3d3a;
+  --muted: #6c6a64;
+  --muted-soft: #8e8b82;
+  --on-primary: #ffffff;
+  --on-dark: #faf9f5;
+  --on-dark-soft: #a09d96;
+
+  /* Semantic */
+  --success: #5db872;
+  --warning: #d4a017;
+  --error: #c64545;
+
+  /* Derived */
+  --error-text: color-mix(in srgb, var(--error) 75%, var(--ink));
+  --error-soft: color-mix(in srgb, var(--error) 12%, var(--canvas));
+  --warning-text: color-mix(in srgb, var(--warning) 55%, var(--ink));
+  --warning-soft: color-mix(in srgb, var(--warning) 16%, var(--canvas));
+  --primary-ring: color-mix(in srgb, var(--primary) 15%, transparent);
+  --primary-tint: color-mix(in srgb, var(--primary) 8%, var(--canvas));
+
+  /* Code surfaces */
+  --code-bg: #efe9de;
+  --code-text: #141413;
+  --code-border: transparent;
+
+  /* JSON syntax (JsonViewer + JsonEditor) */
+  --code-key: #b8162b;
+  --code-string: #18801e;
+  --code-number: #08808a;
+  --code-literal: #08808a;
+  --code-punct: #2b303b;
+
+  /* Elevation (switcher popover only) */
+  --shadow-subtle: 0 1px 3px rgba(20, 20, 19, 0.08);
+
+  /* Type */
+  --font-display: "Copernicus", "Tiempos Headline", "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-sans: "StyreneB", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --display-lg-size: 48px;
+  --display-lg-lh: 1.1;
+  --display-lg-ls: -1px;
+  --display-sm-size: 28px;
+  --display-sm-lh: 1.2;
+  --display-sm-ls: -0.3px;
+  --body-md-size: 16px;
+  --body-md-lh: 1.55;
+  --body-sm-size: 14px;
+  --body-sm-lh: 1.55;
+  --button-size: 14px;
+
+  --type-display-lg: 400 var(--display-lg-size) / var(--display-lg-lh) var(--font-display);
+  --type-display-sm: 400 var(--display-sm-size) / var(--display-sm-lh) var(--font-display);
+  --type-body-md: 400 var(--body-md-size) / var(--body-md-lh) var(--font-sans);
+  --type-body-sm: 400 var(--body-sm-size) / var(--body-sm-lh) var(--font-sans);
+  --type-button: 500 var(--button-size) / 1 var(--font-sans);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 9999px;
+  --radius-full: 9999px;
+}
+
+/* Warm dark theme: toggle by putting .theme-dark on <html>. */
+.theme-dark {
+  color-scheme: dark;
+  --canvas: #181715;
+  --surface-soft: #1f1e1b;
+  --surface-card: #252320;
+  --surface-cream-strong: #34302b;
+  --hairline: color-mix(in srgb, #faf9f5 12%, #181715);
+  --ink: #faf9f5;
+  --body: #faf9f5;
+  --muted: #a09d96;
+  --primary-disabled: #252320;
+  --code-bg: #1f1e1b;
+  --code-text: #faf9f5;
+  --code-border: color-mix(in srgb, #faf9f5 12%, #181715);
+  --code-key: var(--code-text);
+  --code-string: var(--accent-teal);
+  --code-number: var(--accent-amber);
+  --code-literal: var(--primary);
+  --code-punct: var(--on-dark-soft);
+}

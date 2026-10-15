@@ -1,0 +1,23 @@
+.tile {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-cream-strong);
+  color: var(--ink);
+  user-select: none;
+}
+
+.small {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  font: 500 12px/1 var(--font-sans);
+}
+
+.large {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  font: 500 16px/1 var(--font-sans);
+}

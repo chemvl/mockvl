@@ -1,0 +1,52 @@
+openapi: 3.0.3
+info:
+  title: Pets
+  version: "1.0.0"
+paths:
+  /pets:
+    get:
+      summary: List pets
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              example:
+                - id: 1
+                  name: Rex
+  /pets/{id}:
+    get:
+      summary: Get a pet
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+              examples:
+                rex:
+                  value:
+                    id: 1
+                    name: Rex
+                fido:
+                  value:
+                    id: 2
+                    name: Fido
+        "404":
+          description: Not found
+          content:
+            application/json:
+              example:
+                message: Pet not found

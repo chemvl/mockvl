@@ -1,0 +1,33 @@
+.toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search {
+  width: 300px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 48px;
+  background: var(--surface-card);
+  border-radius: var(--radius-xl);
+}
+
+.emptyTitle {
+  margin: 0;
+  font: var(--type-display-sm);
+  letter-spacing: var(--display-sm-ls);
+  color: var(--ink);
+}
+
+@media (max-width: 899px) {
+  .search {
+    width: 100%;
+  }
+}

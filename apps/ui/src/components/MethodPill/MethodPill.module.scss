@@ -1,0 +1,28 @@
+.pill {
+  justify-self: start;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  color: var(--ink);
+  font: 500 12px/1.5 var(--font-mono);
+  white-space: nowrap;
+}
+
+.get {
+  background: color-mix(in srgb, var(--accent-teal) 20%, var(--canvas));
+}
+
+.post {
+  background: color-mix(in srgb, var(--primary) 20%, var(--canvas));
+}
+
+.amber {
+  background: color-mix(in srgb, var(--accent-amber) 24%, var(--canvas));
+}
+
+.delete {
+  background: color-mix(in srgb, var(--error) 14%, var(--canvas));
+}
+
+.other {
+  background: var(--surface-card);
+}

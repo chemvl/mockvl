@@ -1,0 +1,19 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.error {
+  font: 400 13px/1.55 var(--font-sans);
+  color: var(--error-text);
+}
+
+.flush {
+  margin: 0;
+}
+
+.lines {
+  white-space: pre-line;
+}

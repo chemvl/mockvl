@@ -1,0 +1,88 @@
+.viewer {
+  min-width: 0;
+  background: var(--code-bg);
+  color: var(--code-text);
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius-lg);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 8px 12px 0;
+}
+
+.tool {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--on-dark-soft);
+  font: 400 12px/1.4 var(--font-sans);
+  cursor: pointer;
+}
+
+.tree {
+  max-height: 480px;
+  overflow: auto;
+  padding: 12px 14px;
+  font: 400 12px/1.6 var(--font-mono);
+}
+
+.line {
+  display: flex;
+  align-items: baseline;
+  white-space: pre;
+}
+
+.children {
+  padding-left: 16px;
+}
+
+// The toggle and the leaf spacer share one width so keys line up.
+.gutter,
+.toggle {
+  flex: none;
+  width: 14px;
+}
+
+.toggle {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.summary {
+  border: 0;
+  padding: 0 6px;
+  background: none;
+  color: var(--on-dark-soft);
+  font: italic 400 12px/1.6 var(--font-sans);
+  cursor: pointer;
+}
+
+.key {
+  color: var(--code-key);
+}
+
+.punct {
+  color: var(--code-punct);
+}
+
+.string {
+  color: var(--code-string);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.number {
+  color: var(--code-number);
+}
+
+.literal {
+  color: var(--code-literal);
+}

@@ -1,0 +1,64 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  background: var(--surface-card);
+}
+
+.card {
+  width: 420px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px;
+  background: var(--canvas);
+  border-radius: var(--radius-lg);
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.signedIn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: var(--surface-soft);
+  border-radius: var(--radius-md);
+}
+
+.signedInText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.signedInLabel {
+  font: 400 12px/1.4 var(--font-sans);
+  color: var(--muted);
+}
+
+.signedInEmail {
+  font: 500 13px/1.4 var(--font-sans);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer {
+  margin: 0;
+  font: 400 13px/1.55 var(--font-sans);
+  color: var(--muted);
+}

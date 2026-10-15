@@ -1,0 +1,11 @@
+# Applies to docker builds run from the repo root (Dockerfile).
+node_modules
+**/node_modules
+.git
+.github
+.env
+.env.*
+docs
+*.md
+*.log
+.DS_Store

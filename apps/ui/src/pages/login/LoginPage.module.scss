@@ -1,0 +1,128 @@
+.split {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--canvas);
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 48px;
+  padding: 56px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: var(--on-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 500 14px/1 var(--font-mono);
+}
+
+.brandName {
+  font: 500 16px/1 var(--font-sans);
+  color: var(--ink);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 460px;
+}
+
+.heroTitle {
+  margin: 0;
+  font: var(--type-display-lg);
+  letter-spacing: var(--display-lg-ls);
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.heroText {
+  margin: 0;
+  font: var(--type-body-md);
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.footnote {
+  font: 400 13px/1.55 var(--font-sans);
+  color: var(--muted-soft);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px;
+  background: var(--surface-card);
+}
+
+.card {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px;
+  background: var(--canvas);
+  border-radius: var(--radius-lg);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cardTitle {
+  margin: 0;
+  font: var(--type-display-sm);
+  letter-spacing: var(--display-sm-ls);
+  color: var(--ink);
+}
+
+.googleMark {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--hairline);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: 500 11px/1 var(--font-sans);
+}
+
+.hint {
+  font: 400 13px/1.55 var(--font-sans);
+  color: var(--muted);
+}
+
+.divider {
+  height: 1px;
+  background: var(--hairline);
+}
+
+@media (max-width: 899px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .left,
+  .right {
+    padding: 32px;
+  }
+}

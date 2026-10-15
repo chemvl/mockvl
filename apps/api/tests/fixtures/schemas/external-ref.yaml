@@ -1,0 +1,14 @@
+openapi: 3.0.3
+info:
+  title: Sneaky
+  version: "1"
+paths:
+  /secrets:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "/etc/passwd"

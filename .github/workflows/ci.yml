@@ -1,0 +1,128 @@
+name: CI
+
+# Path-filtered to API-relevant files (GitHub workflow files cannot share YAML
+# anchors, hence the duplicated lists). When Phase 10 adds apps/admin it gets
+# its own workflow with the inverse filter, so admin-only changes skip these
+# jobs and vice versa.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/api/**"
+      - "packages/**"
+      - ".github/workflows/ci.yml"
+      - "package.json"
+      - "bun.lock"
+      - "biome.json"
+      - ".dockerignore"
+      - "Dockerfile"
+  pull_request:
+    paths:
+      - "apps/api/**"
+      - "packages/**"
+      - ".github/workflows/ci.yml"
+      - "package.json"
+      - "bun.lock"
+      - "biome.json"
+      - ".dockerignore"
+      - "Dockerfile"
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# CI only reads the repo; keep GITHUB_TOKEN least-privilege.
+permissions:
+  contents: read
+
+jobs:
+  api:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: app
+        ports:
+          - "5432:5432"
+        options: >-
+          --health-cmd "pg_isready -U postgres -d app"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 5
+      redis:
+        image: redis:7
+        ports:
+          - "6379:6379"
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 5
+    env:
+      # tests/setup.ts supplies every other env key; the integration/e2e
+      # suites create and migrate app_test on this server themselves.
+      TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/app_test
+      # Service container publishes the default port (locally compose uses 6380).
+      REDIS_URL: redis://localhost:6379
+    steps:
+      # Third-party actions pinned to commit SHAs: tags are mutable, and these
+      # run with full repo access.
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          # Keep in step with the oven/bun tag in the root Dockerfile.
+          bun-version: "1.4.2"
+
+      - name: Install
+        run: bun install --frozen-lockfile
+
+      - name: Typecheck
+        run: bun run typecheck
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Test
+        # Scoped to the API — apps/admin has jest tests that bun's runner
+        # cannot execute (jest.mock/jsdom); they run in admin.yml instead.
+        run: bun test apps/api
+
+      - name: Docker build
+        # The check stage re-runs typecheck/lint/unit tests inside the image so
+        # it can't silently drift; the layers are shared with the runtime build.
+        run: |
+          docker build -f Dockerfile --target check .
+          docker build -f Dockerfile -t api-ci .
+
+      - name: Docker smoke test
+        # A build can succeed while the container fails to boot (bad CMD path,
+        # file missing from the runtime COPY set). Boot it against the service
+        # Postgres (host network → localhost:5432) and require /health + /ready
+        # under the default API_BASE_PATH (/api).
+        run: |
+          docker run -d --rm --name api-smoke --network host \
+            -e NODE_ENV=production -e PORT=3000 \
+            -e DATABASE_URL="postgres://postgres:postgres@localhost:5432/app" \
+            -e JWT_SECRET="ci-smoke-jwt-secret-ci-smoke-jwt-secret" \
+            -e GOOGLE_CLIENT_ID=ci -e GOOGLE_CLIENT_SECRET=ci \
+            -e GOOGLE_ALLOWED_HD=example.com \
+            -e ADMIN_SESSION_SECRET="ci-smoke-admin-secret-ci-smoke-admin-s" \
+            -e ADMIN_URL=http://localhost:5173 -e API_URL=http://localhost:3000 \
+            -e APP_URL=http://localhost:8080 \
+            -e REDIS_URL="redis://localhost:6379" \
+            api-ci
+          for _ in $(seq 1 30); do
+            if curl -fsS http://localhost:3000/api/health && curl -fsS http://localhost:3000/api/ready; then
+              docker stop api-smoke
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "API container never became healthy" >&2
+          docker logs api-smoke
+          docker stop api-smoke
+          exit 1

@@ -1,0 +1,26 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px 10px 16px;
+  background: var(--surface-dark);
+  border-radius: var(--radius-lg);
+}
+
+.label {
+  flex: none;
+  font: 500 12px/1.4 var(--font-sans);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--on-dark-soft);
+}
+
+.url {
+  flex: 1;
+  min-width: 0;
+  font: 400 14px/1.4 var(--font-mono);
+  color: var(--on-dark);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

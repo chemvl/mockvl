@@ -1,0 +1,11 @@
+{
+  "name": "@starter/schemas",
+  "private": true,
+  "version": "0.0.0",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@hono/zod-openapi": "^1.4.0"
+  }
+}

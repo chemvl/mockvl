@@ -1,0 +1,46 @@
+{
+  "name": "@starter/api",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "worker": "bun src/worker.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
+    "test:unit": "bun test tests/unit",
+    "test:integration": "bun test tests/integration",
+    "test:e2e": "bun test tests/e2e",
+    "schemas:generate": "bun scripts/generate-schemas.ts",
+    "module:generate": "bun scripts/generate-module.ts",
+    "db:generate": "bun run --env-file=../../.env drizzle-kit generate && biome format --write src/db/migrations",
+    "db:migrate": "bun run --env-file=../../.env drizzle-kit migrate",
+    "db:studio": "bun run --env-file=../../.env drizzle-kit studio"
+  },
+  "dependencies": {
+    "@hono/zod-openapi": "^1.4.0",
+    "@modelcontextprotocol/server": "2.3.1",
+    "@scalar/hono-api-reference": "^0.11.8",
+    "@starter/schemas": "workspace:*",
+    "@stoplight/prism-core": "5.16.0",
+    "@stoplight/prism-http": "5.16.0",
+    "@stoplight/types": "^14.1.1",
+    "arctic": "^3.7.0",
+    "drizzle-orm": "^0.45.2",
+    "fp-ts": "^2.16.11",
+    "hono": "^4.12.27",
+    "hono-rate-limiter": "^0.5.3",
+    "ioredis": "^5.11.1",
+    "parse-prefer-header": "1.0.0",
+    "pg-boss": "^12.25.0",
+    "pino": "^10.3.1",
+    "postgres": "^3.4.9",
+    "sanitize-html": "^2.17.6",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.3.1",
+    "@types/bun": "^1.3.14",
+    "@types/sanitize-html": "^2.16.1",
+    "drizzle-kit": "^0.31.10"
+  }
+}

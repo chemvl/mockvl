@@ -1,0 +1,117 @@
+// Shared page typography and layout (values from the reference screens).
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.crumb {
+  align-self: flex-start;
+  font: 400 13px/1.4 var(--font-sans);
+  color: var(--muted);
+}
+
+.title {
+  margin: 0;
+  font: var(--type-display-sm);
+  letter-spacing: var(--display-sm-ls);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  font: 400 14px/1.55 var(--font-sans);
+  color: var(--muted);
+}
+
+.label {
+  font: 500 12px/1.4 var(--font-sans);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sectionTitle {
+  font: 500 14px/1.4 var(--font-sans);
+  color: var(--ink);
+}
+
+.hint {
+  font: 400 13px/1.55 var(--font-sans);
+  color: var(--muted);
+}
+
+.intro {
+  font: 400 14px/1.55 var(--font-sans);
+  color: var(--muted);
+}
+
+.bodyText {
+  margin: 0;
+  font: 400 14px/1.55 var(--font-sans);
+  color: var(--body);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.emptyLine {
+  margin: 0;
+  padding: 24px 0;
+  text-align: center;
+  font: 400 14px/1.55 var(--font-sans);
+  color: var(--muted);
+}
+
+.cellStack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cellPrimary {
+  font: 500 15px/1.4 var(--font-sans);
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cellUrl {
+  font: 400 12px/1.4 var(--font-mono);
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cellText {
+  font: 400 14px/1.4 var(--font-sans);
+  color: var(--body);
+}
+
+.cellSmall {
+  font: 400 13px/1.4 var(--font-sans);
+  color: var(--body);
+}
+
+.cellMuted {
+  font: 400 12px/1.4 var(--font-sans);
+  color: var(--muted);
+}
